@@ -24,6 +24,12 @@
             @yield('content')
         </div>
 
+        <div class="aside">
+            @include('commons.error_messages')
+            @yield('aside')
+        </div>
+
+
         @include('commons.footer')
     </body>
 </html>
