@@ -25,7 +25,6 @@
         </div>
 
         <div class="aside">
-            @include('commons.error_messages')
             @yield('aside')
         </div>
 

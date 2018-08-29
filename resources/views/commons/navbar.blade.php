@@ -20,7 +20,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">イベント追加</a>
+                                    <a href="{{ route('events.create') }}">イベント追加</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>

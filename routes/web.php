@@ -19,4 +19,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
+// イベント関連
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('events', 'EventsController', ['only' => ['create','store']]);
+});
 Route::resource('events', 'EventsController', ['only' => ['show']]);
