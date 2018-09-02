@@ -9,13 +9,9 @@
                         <p class="event-name">{{ $event->event_name }}</p>
                         <p>{{ $event->event_date."@".$event->event_venue}}</p>
                         <div class="buttons text-center">
-                        <!--レイアウトのみ作成。中間テーブル作成後修正する-->
-                            {!! Form::open(['route' => 'login.post', 'method' => 'delete']) !!}
-                                {!! Form::hidden('itemCode', $event->id) !!}
-                                {!! Form::submit('Want', ['class' => 'btn btn-success']) !!}
-                                {!! Form::hidden('itemCode', $event->id) !!}
-                                {!! Form::submit('Want', ['class' => 'btn btn-success']) !!}
-                            {!! Form::close() !!}
+                        @if (Auth::check())
+                            @include('event_user.event_interested_button',['event' => $event])
+                        @endif
                         </div>
                     </div>
                 </div>

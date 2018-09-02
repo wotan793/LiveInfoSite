@@ -19,8 +19,13 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-// イベント関連
+// イベント、ユーザー関連
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('events', 'EventsController', ['only' => ['create','store']]);
+    Route::resource('events', 'EventsController', ['except' => ['show']]);
+    Route::post('participate', 'EventUserController@participate')->name('event.participate');
+    Route::post('interested', 'EventUserController@interested')->name('event.interested');
+    Route::delete('participate', 'EventUserController@unparticipate')->name('event.unparticipate');
+    Route::delete('interested', 'EventUserController@uninterested')->name('event.uninterested');
+    Route::resource('users', 'UsersController');
 });
 Route::resource('events', 'EventsController', ['only' => ['show']]);

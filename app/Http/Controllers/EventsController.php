@@ -15,7 +15,11 @@ class EventsController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::where('user_id', \Auth::id())->get();
+        
+        return view('events.index',[
+            'events' => $events,
+        ]);
     }
 
     /**
@@ -68,7 +72,7 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-      $event = Event::find($id);
+      $event =  Event::find($id);
 
       return view('events.show', [
           'event' => $event,
@@ -83,7 +87,10 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event =  Event::find($id);
+        return view('events.edit', [
+            'event' => $event,
+        ]);
     }
 
     /**
@@ -95,7 +102,26 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+           'event_name' => 'required|max:191',
+           'event_prefecture' => 'required|max:191',
+           'event_venue' => 'required|max:191',
+           'event_date' => 'required|date_format:Y-m-d',
+           'event_starttime' => 'required|date_format:H:i',
+           'event_artist' => 'required|max:191',
+           'event_remarks' => 'required|max:191',
+        ]);
+        $event = Event::find($id);
+        $event->event_name = $request->event_name;
+        $event->event_prefecture = $request->event_prefecture;
+        $event->event_venue = $request->event_venue;
+        $event->event_date = $request->event_date;
+        $event->event_starttime = $request->event_starttime;
+        $event->event_artist = $request->event_artist;
+        $event->event_remarks = $request->event_remarks;
+        $event->save();
+
+        return redirect('/');
     }
 
     /**
@@ -106,6 +132,12 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $event = Event::find($id);
+
+        if (\Auth::id() === $event->user_id) {
+            $event->delete();
+        }
+
+        return redirect()->back();
     }
 }

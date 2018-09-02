@@ -22,13 +22,8 @@
                                 <li>
                                     <a href="{{ route('events.create') }}">イベント追加</a>
                                 </li>
-                                <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="#">イベント修正</a>
-                                </li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="#">イベント削除</a>
+                                    <a href="{{ route('events.index') }}">イベント管理</a>
                                 </li>
                             </ul>
                         </li>
@@ -39,7 +34,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">マイページ</a>
+                                    <a href="{{ route('users.show', Auth::id())}}">マイページ</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>

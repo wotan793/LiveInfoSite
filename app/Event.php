@@ -12,4 +12,19 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('type')->withTimestamps();
+    }
+
+    public function participate_users()
+    {
+        return $this->users()->where('type', 'participate');
+    }
+    
+    public function interested_users()
+    {
+        return $this->users()->where('type', 'interested');
+    }
 }
