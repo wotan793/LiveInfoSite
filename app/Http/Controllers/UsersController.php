@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\User;
+use \App\Event;
 
 class UsersController extends Controller
 {
@@ -46,10 +47,15 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        
         $user = User::find($id);
+        $count_participate = $user->participate_events()->count();
+        $count_interested = $user->interested_events()->count();
 
         return view('users.show', [
             'user' => $user,
+            'count_participate' => $count_participate,
+            'count_interested' => $count_interested,
         ]);
     }
 

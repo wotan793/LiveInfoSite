@@ -9,13 +9,12 @@
 @endif
 
 @if (Auth::user()->is_interesting($event->id))
-    {!! Form::open(['route' => 'event.uninterested', 'method' => 'delete']) !!}
-        {!! Form::hidden('event_id', $event->id) !!}
-        {!! Form::submit('興味あり', ['class' => 'btn btn-success']) !!}
-    {!! Form::close() !!}1
+    {!! Form::open(['route' => ['event.uninterested', $event->id], 'method' => 'delete']) !!}
+        {!! Form::submit('興味なし', ['class' => 'btn btn-success']) !!}
+    {!! Form::close() !!}
 @else
-    {!! Form::open(['route' => 'event.interested', 'method' => 'post']) !!}
-        {!! Form::hidden('event_id', $event->id) !!}
+    {!! Form::open(['route' => ['event.interested', $event->id]]) !!}
         {!! Form::submit('興味あり', ['class' => 'btn btn-default']) !!}
     {!! Form::close() !!}
 @endif
+
