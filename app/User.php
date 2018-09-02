@@ -29,17 +29,21 @@ class User extends Authenticatable
     
     public function events()
     {
+        return $this->hasMany(Event::class);
+    }
+    public function events_user()
+    {
         return $this->belongsToMany(Event::class)->withPivot('type')->withTimestamps();
     }
 
     public function participate_events()
     {
-        return $this->events()->where('type', 'participate');
+        return $this->events_user()->where('type', 'participate');
     }
     
     public function interested_events()
     {
-        return $this->events()->where('type', 'interested');
+        return $this->events_user()->where('type', 'interested');
     }
     
     public function participate($event_id)
@@ -51,7 +55,7 @@ class User extends Authenticatable
             return false;
         } else {
             // 未 participateであれば participate する
-            $this->events()->attach($event_id, ['type' => 'participate']);
+            $this->events_user()->attach($event_id, ['type' => 'participate']);
             return true;
         }
     }
@@ -66,7 +70,7 @@ class User extends Authenticatable
             return false;
         } else {
             // 未 interested であれば interested する
-            $this->events()->attach($event_id, ['type' => 'interested']);
+            $this->events_user()->attach($event_id, ['type' => 'interested']);
             return true;
         }
         
