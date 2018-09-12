@@ -45,5 +45,6 @@
         </div>
 @endif
 
-
+{!! $events->render() !!}
 @endsection
+

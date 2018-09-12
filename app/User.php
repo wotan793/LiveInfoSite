@@ -48,6 +48,7 @@ class User extends Authenticatable
     
     public function participate($event_id)
     {
+        $this->uninterested($event_id);
         // 既に participate しているかの確認
         $exist = $this->is_participating($event_id);
         if ($exist) {
@@ -62,6 +63,7 @@ class User extends Authenticatable
     
     public function interested($event_id)
     {
+        $this->unparticipate($event_id);
         // 既に interested しているかの確認
         $exist = $this->is_interesting($event_id);
 

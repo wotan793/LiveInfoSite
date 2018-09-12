@@ -15,7 +15,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::where('user_id', \Auth::id())->get();
+        $events = Event::where('user_id', \Auth::id())->orderBy('event_date', 'asc')->paginate(10);
         
         return view('events.index',[
             'events' => $events,
@@ -44,22 +44,21 @@ class EventsController extends Controller
     public function store(Request $request)
     { 
         $this->validate($request, [
-           'event_name' => 'required|max:191',
-           'event_prefecture' => 'required|max:191',
-           'event_venue' => 'required|max:191',
-           'event_date' => 'required|date_format:Y-m-d',
-           'event_starttime' => 'required|date_format:H:i',
-           'event_artist' => 'required|max:191',
-           'event_remarks' => 'required|max:191',
+            'event_name' => 'required|max:191',
+            'event_prefecture' => 'required|max:191',
+            'event_venue' => 'required|max:191',
+            'event_date' => 'required|date_format:Y-m-d',
+            'event_starttime' => 'required|date_format:H:i',
+            'event_artist' => 'required|max:191'
         ]);
         $request->user()->events()->create([
-        'event_name' => $request->event_name,
-        'event_prefecture' => $request->event_prefecture,
-        'event_venue' => $request->event_venue,
-        'event_date' => $request->event_date,
-        'event_starttime' => $request->event_starttime,
-        'event_artist' => $request->event_artist,
-        'event_remarks' => $request->event_remarks,
+            'event_name' => $request->event_name,
+            'event_prefecture' => $request->event_prefecture,
+            'event_venue' => $request->event_venue,
+            'event_date' => $request->event_date,
+            'event_starttime' => $request->event_starttime,
+            'event_artist' => $request->event_artist,
+            'event_remarks' => $request->event_remarks,
         ]);
         return redirect('/');
     }
@@ -108,8 +107,7 @@ class EventsController extends Controller
            'event_venue' => 'required|max:191',
            'event_date' => 'required|date_format:Y-m-d',
            'event_starttime' => 'required|date_format:H:i',
-           'event_artist' => 'required|max:191',
-           'event_remarks' => 'required|max:191',
+           'event_artist' => 'required|max:191'
         ]);
         $event = Event::find($id);
         $event->event_name = $request->event_name;
