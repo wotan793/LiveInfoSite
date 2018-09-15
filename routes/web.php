@@ -29,5 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('interested', 'EventUserController@uninterested')->name('event.uninterested');
     });
         Route::resource('users', 'UsersController');
+        Route::resource('upload', 'UploadContentController');
 });
 Route::resource('events', 'EventsController', ['only' => ['show']]);

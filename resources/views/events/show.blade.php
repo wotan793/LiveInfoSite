@@ -34,6 +34,9 @@
                                 <span class="glyphicon glyphicon-user"></span>
                                 {{ $event->event_artist}}
                             </p>
+                            <p>
+                                <img src={{ $event->event_imageUrl}}>
+                            </p>
                         </div>
                     </div>
                 </div>

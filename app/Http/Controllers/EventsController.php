@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 use \App\Event;
 
 class EventsController extends Controller
@@ -49,8 +51,21 @@ class EventsController extends Controller
             'event_venue' => 'required|max:191',
             'event_date' => 'required|date_format:Y-m-d',
             'event_starttime' => 'required|date_format:H:i',
-            'event_artist' => 'required|max:191'
+            'event_artist' => 'required|max:191',
+            'event_imageUrl' => 'image',
         ]);
+        
+        if ($request->event_imageUrl !==NULL){
+            $image = $request->file('event_imageUrl');
+                    /**
+             * 自動生成されたファイル名が付与されてS3に保存される。
+             * 第三引数に'public'を付与しないと外部からアクセスできないので注意。
+             */
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        
+            /* ファイルパスから参照するURLを生成する */
+            $request->event_imageUrl = Storage::disk('s3')->url($path);
+        }        
         $request->user()->events()->create([
             'event_name' => $request->event_name,
             'event_prefecture' => $request->event_prefecture,
@@ -58,6 +73,7 @@ class EventsController extends Controller
             'event_date' => $request->event_date,
             'event_starttime' => $request->event_starttime,
             'event_artist' => $request->event_artist,
+            'event_imageUrl' => $request->event_imageUrl,
             'event_remarks' => $request->event_remarks,
         ]);
         return redirect('/');
@@ -107,8 +123,20 @@ class EventsController extends Controller
            'event_venue' => 'required|max:191',
            'event_date' => 'required|date_format:Y-m-d',
            'event_starttime' => 'required|date_format:H:i',
-           'event_artist' => 'required|max:191'
+           'event_artist' => 'required|max:191',
+           'event_imageUrl' => 'image',
         ]);
+        if ($request->event_imageUrl !==NULL){
+            $image = $request->file('event_imageUrl');
+                    /**
+             * 自動生成されたファイル名が付与されてS3に保存される。
+             * 第三引数に'public'を付与しないと外部からアクセスできないので注意。
+             */
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        
+            /* ファイルパスから参照するURLを生成する */
+            $request->event_imageUrl = Storage::disk('s3')->url($path);
+        }        
         $event = Event::find($id);
         $event->event_name = $request->event_name;
         $event->event_prefecture = $request->event_prefecture;
@@ -117,6 +145,7 @@ class EventsController extends Controller
         $event->event_starttime = $request->event_starttime;
         $event->event_artist = $request->event_artist;
         $event->event_remarks = $request->event_remarks;
+        $event->event_imageUrl = $request->event_imageUrl;
         $event->save();
 
         return redirect('/');

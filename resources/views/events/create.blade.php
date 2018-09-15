@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
 
-            {!! Form::model($event,['route' => 'events.store']) !!}
+            {!! Form::model($event,['route' => 'events.store', 'class' => 'form', 'files' => true]) !!}
                 <div class="form-group"> 
                     {!! Form::label('event_name', 'イベント名:')!!}
                     {!! Form::text('event_name', null, ['class' => 'form-control'])!!}
@@ -40,7 +40,14 @@
                     {!! Form::label('event_remarks', '備考:')!!}
                     {!! Form::text('event_remarks', null, ['class' => 'form-control'])!!}
                 </div>
-        
+                
+                <div class="form-group">
+                    {!! Form::label('event_imageUrl', 'フライヤーのアップロード') !!}
+                    {!! Form::file('event_imageUrl', null) !!}
+                </div>
+
+
+
                 {!! Form::submit('この内容で登録する', ['class' => 'btn btn-primary']) !!}
         
             {!! Form::close() !!}
