@@ -25,4 +25,6 @@
             </ul>
         </div>
     </div>
+    @include('events.myevents', ['events' => $events])
+    {!! $events->render() !!}
 @endsection
