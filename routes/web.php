@@ -28,7 +28,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('participate', 'EventUserController@unparticipate')->name('event.unparticipate');
         Route::delete('interested', 'EventUserController@uninterested')->name('event.uninterested');
     });
-        Route::resource('users', 'UsersController');
-        Route::resource('upload', 'UploadContentController');
+    Route::resource('users', 'UsersController');
 });
 Route::resource('events', 'EventsController', ['only' => ['show']]);
