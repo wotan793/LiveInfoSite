@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         //barryvdh/laravel-debugbar
-        Barryvdh\Debugbar\ServiceProvider::class,
+       // Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         //barryvdh/laravel-debugbar
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+       // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
