@@ -17,17 +17,10 @@
     <body>
         @include('commons.navbar')
 
-        @yield('cover')
-
         <div class="container">
             @include('commons.error_messages')
             @yield('content')
         </div>
-
-        <div class="aside">
-            @yield('aside')
-        </div>
-
 
         @include('commons.footer')
     </body>
