@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div id="event-manage">
 <h1>イベント管理画面</h1>
 @if ($events)
         <div class="event-manage">
@@ -30,7 +31,7 @@
                             </td>
                             <td>
                                 {!! Form::model($event, ['route' => ['events.edit', $event->id], 'method' => 'get']) !!}
-                                    {!! Form::submit('修正', ['class' => 'btn btn-success']) !!}
+                                    {!! Form::submit('更新', ['class' => 'btn btn-success']) !!}
                                 {!! Form::close() !!}
                             </td>
                             <td>
@@ -44,6 +45,8 @@
             </table>
         </div>
 @endif
+</div>
+
 
 {!! $events->render() !!}
 @endsection
