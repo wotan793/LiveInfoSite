@@ -88,7 +88,8 @@ class EventsController extends Controller
     public function show($id)
     {
       $event =  Event::find($id);
-
+      //秒は表示させないよう切り取る
+      $event->event_starttime = mb_substr($event->event_starttime,0,5);
       return view('events.show', [
           'event' => $event,
       ]);
@@ -103,9 +104,11 @@ class EventsController extends Controller
     public function edit($id)
     {
         $event =  Event::find($id);
+        //秒は表示させないよう切り取る
+        $event->event_starttime = mb_substr($event->event_starttime,0,5);
         return view('events.edit', [
             'event' => $event,
-        ]);
+    ]);
     }
 
     /**
