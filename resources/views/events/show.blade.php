@@ -41,7 +41,11 @@
                                 {{ $event->event_artist}}
                             </p>
                             <p>
-                                <img src={{ $event->event_imageUrl}}  width="300" height="400">
+                                @if ($event->event_imageUrl)
+                                    <img src={{ $event->event_imageUrl}}  width="300" height="400">
+                                @else
+                                    <img src="{{ secure_asset("images/noimage.png") }}"  width="300" height="300">
+                                @endif
                             </p>
                         </div>
                     </div>

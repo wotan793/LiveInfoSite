@@ -5,7 +5,11 @@
                 <div class="col-md-3 col-sm-4 col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
-                            <img src="{{ $event->event_imageUrl }}" width="230" height="300">
+                            @if ($event->event_imageUrl)
+                                <img src="{{ $event->event_imageUrl }}" width="230" height="300">
+                            @else
+                                <img src="{{ secure_asset("images/noimage.png") }}"  width="240" height="300">
+                            @endif
                         </div>
                         <div class="panel-body">
                             @if ($event->id)
