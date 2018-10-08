@@ -24,9 +24,9 @@
 
                 <div class="form-group"> 
                     {!! Form::label('event_date', '開催日:')!!}
-                    {!! Form::text('event_date', null, ['class' => 'form-control'])!!}
+                    {!! Form::text('event_date', null, ['class' => 'form-control','id' => 'datepicker'])!!}
                 </div>
-
+                
                 <div class="form-group"> 
                     {!! Form::label('event_starttime', 'スタート時間:')!!}
                     {!! Form::text('event_starttime', null, ['class' => 'form-control'])!!}
