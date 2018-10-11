@@ -11,7 +11,7 @@
                                 <img src="{{ secure_asset("images/noimage.png") }}"  width="240" height="300">
                             @endif
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" id ="panel-myevent">
                             @if ($event->id)
                             <p>
                                 <span class="glyphicon glyphicon-time"></span>
