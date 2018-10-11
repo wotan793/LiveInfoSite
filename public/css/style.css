@@ -64,6 +64,11 @@ footer {
     font-weight: 100;
     font-size: 16px; 
 }
+#panel-myevent{
+    font-weight: 100;
+    font-size: 16px; 
+    height: 240px;
+}
 .event-manage {
     margin-top: 20px;
     margin-bottom: 20px;
