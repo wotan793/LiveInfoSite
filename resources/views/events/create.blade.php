@@ -28,7 +28,7 @@
                 
                 <div class="form-group">  
                     {!! Form::label('event_starttime', 'スタート時間:')!!}
-                    {!! Form::text('event_starttime', null, ['class' => 'form-control',"placeholder"=>"(例)19:00"])!!}
+                    {!! Form::text('event_starttime', null, ['class' => 'form-control','id' => 'timepicker'])!!}
                 </div>
 
                 <div class="form-group"> 
