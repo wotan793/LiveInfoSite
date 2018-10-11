@@ -20,7 +20,16 @@
         $(function() {
             $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
         });
-        </script>           
+        </script>
+
+        <!-- Timepicker | jQuery UI -->
+        <link rel="stylesheet" href="https://cdn.rawgit.com/jonthornton/jquery-timepicker/3e0b283a/jquery.timepicker.min.css">
+        <script src="https://cdn.rawgit.com/jonthornton/jquery-timepicker/3e0b283a/jquery.timepicker.min.js"></script>
+        <script>
+        $(function(){
+        	$('#timepicker').timepicker({ 'timeFormat': 'H:i' });
+        });
+        </script>
 
         <link rel="stylesheet" href="{{ secure_asset('css/style.css') }}">
     </head>
