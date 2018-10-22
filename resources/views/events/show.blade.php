@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div id="wrapper">
-            <div class="col-xs-5">
+            <div class="col-xs-3 col-sm4 col-md-5 col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <p class="event-name">{{ $event->event_name }}</p>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-7">
+            <div class="col-xs-3 col-sm-4 col-md-5 col-lg-6">
                 <div class="event-detail">
                         <div class="panel-body">
                             <div class="buttons text-left">
@@ -40,7 +40,7 @@
                                 </p>
                                 <p>
                                     @if ($event->event_imageUrl)
-                                        <img class="" src={{ $event->event_imageUrl}}  width="300" height="300">
+                                        <img class="media-object img-rounded img-responsive" src={{ $event->event_imageUrl}}  width="300" height="300">
                                     @else
                                         <img class="media-object img-rounded img-responsive" src={{ secure_asset("images/noimage.png") }}  width="300" height="300">
                                     @endif
@@ -55,7 +55,7 @@
 @section('content_message')
     <div class="row">
         <div id="message">
-            <div class="col-xs-12">
+            <div class="col-xs-6 col-sm-7 col-md-10 col-lg-12">
                 <ul class="nav nav-tabs nav-justified">
                     <div class="form-group">
                         <h4>{{ "コメントボックス"}}</h4>
