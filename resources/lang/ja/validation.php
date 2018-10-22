@@ -16,7 +16,7 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeには有効なURLを指定してください。',
     'after'                => ':attributeには:dateより後の日付を指定してください。',
-    'after_or_equal'       => ':attributeには:date以降の日付を指定してください。',
+    'after_or_equal'       => ':attributeには本日以降の日付を指定してください。',
     'alpha'                => ':attributeには英字のみからなる文字列を指定してください。',
     'alpha_dash'           => ':attributeには英数字・ハイフン・アンダースコアのみからなる文字列を指定してください。',
     'alpha_num'            => ':attributeには英数字のみからなる文字列を指定してください。',
@@ -128,6 +128,7 @@ return [
         'event_artist'=>'出演者',
         'event_remarks'=>'備考',
         'event_imageUrl'=>'フライヤー画像',
+        'content'=>'コメント内容',
     ],
 
 ];
