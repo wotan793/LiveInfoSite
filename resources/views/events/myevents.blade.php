@@ -6,9 +6,9 @@
                     <div class="panel panel-default">
                         <div class="panel-heading text-center">
                             @if ($event->event_imageUrl)
-                                <img src="{{ $event->event_imageUrl }}" width="230" height="300">
+                                <img class="media-object img-rounded img-responsive"  src="{{ $event->event_imageUrl }}" width="300" height="300">
                             @else
-                                <img src="{{ secure_asset("images/noimage.png") }}"  width="240" height="300">
+                                <img class="media-object img-rounded img-responsive"  src="{{ secure_asset("images/noimage.png") }}"  width="300" height="300">
                             @endif
                         </div>
                         <div class="panel-body" id ="panel-myevent">
