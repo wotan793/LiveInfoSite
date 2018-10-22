@@ -31,6 +31,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Event::class);
     }
+    
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+    
     public function events_user()
     {
         return $this->belongsToMany(Event::class)->withPivot('type')->withTimestamps();
