@@ -39,6 +39,7 @@
         <div class="container">
             @include('commons.error_messages')
             @yield('content')
+            @yield('content_message')
         </div>
 
         @include('commons.footer')

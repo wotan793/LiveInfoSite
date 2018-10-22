@@ -22,6 +22,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // イベント、ユーザー関連
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('events', 'EventsController', ['except' => ['show']]);
+    Route::resource('messages', 'MessagesController', ['except' => ['show']]);
     Route::group(['prefix' => 'events/{id}'], function () {
         Route::post('participate', 'EventUserController@participate')->name('event.participate');
         Route::post('interested', 'EventUserController@interested')->name('event.interested');
@@ -29,5 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('interested', 'EventUserController@uninterested')->name('event.uninterested');
     });
     Route::resource('users', 'UsersController');
+    Route::resource('users', 'UsersController');
 });
 Route::resource('events', 'EventsController', ['only' => ['show']]);
+Route::resource('messages', 'MessagesController', ['only' => ['show']]);

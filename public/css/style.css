@@ -7,7 +7,6 @@ body {
 footer {
     margin-top: 40px;
 }
-
 /* navbar */
 .navbar {
     background-color: #fff;
@@ -60,6 +59,13 @@ footer {
     background-color: #fff;
     background-size: cover;    
 }
+#wrapper{
+    width: 1000px;
+}
+#message{
+    width: 1000px;
+    margin-top:15px;
+}
 .panel-body{
     font-weight: 100;
     font-size: 16px; 
@@ -78,7 +84,6 @@ footer {
     background-size: cover;
 }
 .event-detail {
-    width: 150%;
     background-color: #fff;
 }
 
@@ -89,6 +94,7 @@ footer {
     display: inline-block;
     margin: 0 5px;
 }
+
 
 /* users */
 .user-profile .name {
@@ -122,3 +128,11 @@ footer {
     font-size: 18px;
 }
 
+.media-list{
+    background: #FFFFFF;
+}
+
+.media-body{
+    border-bottom: medium solid #dcdcdc;
+    border-width: thin;
+}

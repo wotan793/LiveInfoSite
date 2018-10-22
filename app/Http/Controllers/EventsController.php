@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 
 use \App\Event;
+use \App\Message;
+
 
 class EventsController extends Controller
 {
@@ -88,10 +90,12 @@ class EventsController extends Controller
     public function show($id)
     {
       $event =  Event::find($id);
+      $messages = Message::where('event_id', $id)->orderBy('created_at', 'desc')->paginate(10);
       //秒は表示させないよう切り取る
       $event->event_starttime = mb_substr($event->event_starttime,0,5);
       return view('events.show', [
           'event' => $event,
+          'messages' => $messages,
       ]);
     }
 
