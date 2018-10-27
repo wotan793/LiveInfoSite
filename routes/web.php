@@ -23,14 +23,16 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('events', 'EventsController', ['except' => ['show']]);
     Route::resource('messages', 'MessagesController', ['except' => ['show']]);
+    Route::resource('users', 'UsersController');
     Route::group(['prefix' => 'events/{id}'], function () {
         Route::post('participate', 'EventUserController@participate')->name('event.participate');
         Route::post('interested', 'EventUserController@interested')->name('event.interested');
         Route::delete('participate', 'EventUserController@unparticipate')->name('event.unparticipate');
         Route::delete('interested', 'EventUserController@uninterested')->name('event.uninterested');
     });
-    Route::resource('users', 'UsersController');
-    Route::resource('users', 'UsersController');
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::put('photoDelete', 'UsersController@photoDelete')->name('user.photoDelete');
+    });
 });
 Route::resource('events', 'EventsController', ['only' => ['show']]);
 Route::resource('messages', 'MessagesController', ['only' => ['show']]);

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 use \App\User;
@@ -16,7 +16,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(\Auth::id());
+        return view('users.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -83,7 +86,42 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+           'user_imageUrl' => 'required|image',
+        ]);
+        if ($request->user_imageUrl !==NULL){
+            $image = $request->file('user_imageUrl');
+                    /**
+             * 自動生成されたファイル名が付与されてS3に保存される。
+             * 第三引数に'public'を付与しないと外部からアクセスできないので注意。
+             */
+            $path = Storage::disk('s3')->putFile('myprefix', $image, 'public');
+        
+            /* ファイルパスから参照するURLを生成する */
+            $request->user_imageUrl = Storage::disk('s3')->url($path);
+        }        
+        $user = User::find($id);
+        $user->user_imageUrl = $request->user_imageUrl;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+
+    /**
+     * photoDelete the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function photoDelete(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->user_imageUrl = null;
+        $user->save();
+
+        return redirect()->back();
     }
 
     /**

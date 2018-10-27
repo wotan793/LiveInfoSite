@@ -36,6 +36,9 @@
                                 <li>
                                     <a href="{{ route('users.show', Auth::id())}}">マイページ</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('users.index')}}">設定</a>
+                                </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a href="{{ route('logout.get') }}">ログアウト</a>
