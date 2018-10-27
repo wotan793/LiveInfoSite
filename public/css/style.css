@@ -97,6 +97,17 @@ footer {
 
 
 /* users */
+#user{
+    float: left;
+    margin-top: -20px;
+    width: 70%;
+    height: 700px;
+    background-color: #fff;
+    background-size: cover;
+}
+#user-button{
+    margin-top: 140px;
+}
 .user-profile .name {
     margin-bottom: 20px;
 }
@@ -127,7 +138,6 @@ footer {
 .user-profile .status ul li .status-value {
     font-size: 18px;
 }
-
 .media-list{
     background: #FFFFFF;
 }

@@ -3,7 +3,11 @@
 @section('content')
     <div class="user-profile">
         <div class="icon text-center">
-            <img src="{{ Gravatar::src($user->email, 100) . '&d=mm' }}" alt="" class="img-circle">
+            @if ($user->user_imageUrl)
+                <img class="media-object img-rounded center-block" src={{ $user->user_imageUrl}} width="200" height="200" alt="" class="img-circle">
+            @else
+               <img class="media-object img-rounded img-responsive center-block" src={{ secure_asset("images/noimage.png") }}   width="200" height="200">
+            @endif
         </div>
         <div class="name text-center">
             <h1>{{ $user->name }}</h1>
