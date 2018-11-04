@@ -3,7 +3,12 @@
     <?php $user = $message->user; ?>
     <li class="media">
         <div class="media-left">
-        <img class="media-object img-rounded center-block" src={{ $user->user_imageUrl}}  width="80" height="80">
+        @if ($user->user_imageUrl)
+            <img class="media-object img-rounded center-block" src={{ $user->user_imageUrl}}  width="80" height="80">
+        @else
+            <img class="media-object img-rounded center-block"  src="{{ secure_asset("images/noimage.png") }}"   width="80" height="80">
+        @endif
+
         </div>
         <div class="media-body">
             <div>
