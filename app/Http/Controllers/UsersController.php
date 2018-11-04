@@ -54,9 +54,9 @@ class UsersController extends Controller
         
         $user = User::find($id);
         
-        $count_participate = $user->participate_events()->count();
-        $count_interested = $user->interested_events()->count();
-        $events = $user->events_user()->orderBy('event_date', 'asc')->paginate(12);
+        $count_participate = $user->participate_events()->where('event_date', '>=', date('Y/m/d'))->count();
+        $count_interested = $user->interested_events()->where('event_date', '>=', date('Y/m/d'))->count();
+        $events = $user->events_user()->where('event_date', '>=', date('Y/m/d'))->orderBy('event_date', 'asc')->paginate(12);
 
         return view('users.show', [
             'user' => $user,
