@@ -59,6 +59,7 @@
                 <ul class="nav nav-tabs nav-justified">
                     <div class="form-group">
                         <h4>{{ "コメントボックス"}}</h4>
+                        @if (Auth::check())
                         {!! Form::open(['route' => 'messages.store']) !!}
                             <div class="form-group">
                                 {{Form::hidden('event_id', $event->id)}}
@@ -66,6 +67,7 @@
                                 {!! Form::submit('コメント', ['class' => 'btn btn-primary btn-block']) !!}
                             </div>
                         {!! Form::close() !!}
+                        @endif
                         @if (count($messages) > 0)
                             @include('messages.messages', ['messages' => $messages])
                         @endif
